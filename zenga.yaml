@@ -1,0 +1,125 @@
+units:
+  # Proxy Spacing Variables
+  kx: cx
+  ky: cy
+  # Padding Variables
+  px: kx + 2
+  py: ky + 2
+points:
+  zones:
+    pinky:
+      key:
+        padding: 1ky
+        spread: 1kx
+      columns:
+        outer:
+          rows.bottom.skip: true
+        inner:
+          key:
+            stagger: 8
+      rows:
+        bottom:
+        home:
+        top:
+    ring:
+      key:
+        padding: 1ky
+        spread: 1kx
+        splay: -9
+      anchor:
+        ref: pinky_inner_bottom
+        shift: [23, 3]
+      columns:
+        main:
+      rows:
+        mod:
+        bottom:
+        home:
+        top:
+    middle:
+      key:
+        padding: 1ky
+        spread: 1kx
+        splay: -8.5
+      anchor:
+        ref: ring_main_mod
+        shift: [25, 5]
+      columns:
+        main:
+      rows:
+        mod:
+        bottom:
+        home:
+        top:
+    index:
+      key:
+        padding: 1ky
+        spread: 1kx
+      anchor:
+        ref: middle_main_mod
+        shift: [25, -8]
+      columns:
+        outer:
+          key:
+            splay: -5
+        inner:
+          rows.top.skip: true
+      rows:
+        mod:
+        bottom:
+        home:
+        top:
+    thumb:
+      key:
+        padding: 1ky+3
+        splay: -100
+        rotate: -5
+      anchor:
+        ref: index_inner_mod
+        shift: [0, -22]
+      columns:
+        main:
+      rows:
+        moreouter:
+        outer:
+        inner:
+        moreinner:
+  mirror: &mirror
+    ref: thumb_main_moreinner
+    distance: 2.5kx
+outlines:
+  board:
+    - what: polygon
+      operation: stack
+      fillet: 2
+      points:
+        - ref: pinky_outer_home
+          shift: [-15,-28]
+        - ref: pinky_outer_top
+          shift: [-15,9]
+        - ref: ring_main_top
+          shift: [-10,10]
+        - ref: middle_main_top
+          shift: [2,15]
+        - ref: index_outer_top
+          shift: [12,12]
+        - ref: index_inner_home
+          shift: [15,10]
+        - ref: thumb_main_outer
+          shift: [-15,-9]
+        - ref: thumb_main_moreinner
+          shift: [-15,12]
+        - ref: thumb_main_moreinner
+          shift: [12,15]
+        - ref: thumb_main_moreouter
+          shift: [15,-5]
+        - ref: pinky_inner_bottom
+          shift: [3,-19]
+  keys:
+    - what: rectangle
+      where: true
+      size: [kx-0.5,ky-0.5]
+  combo:
+    - name: board
+    - operation: subtract
+      name: keys
