@@ -5,6 +5,7 @@ units:
   # Padding Variables
   px: kx + 2
   py: ky + 2
+  openhand: -4
 points:
   zones:
     pinky:
@@ -25,7 +26,7 @@ points:
       key:
         padding: 1ky
         spread: 1kx
-        splay: -9
+        splay: openhand -4
       anchor:
         ref: pinky_inner_bottom
         shift: [23, 3]
@@ -40,7 +41,7 @@ points:
       key:
         padding: 1ky
         spread: 1kx
-        splay: -8.5
+        splay: openhand - 3.5
       anchor:
         ref: ring_main_mod
         shift: [25, 5]
@@ -61,7 +62,7 @@ points:
       columns:
         outer:
           key:
-            splay: -5
+            splay: openhand
         inner:
           rows.top.skip: true
       rows:
@@ -72,10 +73,10 @@ points:
     thumb:
       key:
         padding: 1ky+3
-        splay: -100
-        rotate: -5
+        splay: openhand -90
+        rotate: -9
       anchor:
-        ref: index_inner_mod
+        ref: index_outer_mod
         shift: [0, -22]
       columns:
         main:
@@ -84,9 +85,6 @@ points:
         outer:
         inner:
         moreinner:
-  mirror: &mirror
-    ref: thumb_main_moreinner
-    distance: 2.5kx
 outlines:
   board:
     - what: polygon
@@ -94,27 +92,29 @@ outlines:
       fillet: 2
       points:
         - ref: pinky_outer_home
-          shift: [-15,-28]
+          shift: [-cx,-cx]
         - ref: pinky_outer_top
-          shift: [-15,9]
+          shift: [-cx,cx]
         - ref: ring_main_top
-          shift: [-10,10]
+          shift: [0,cx]
         - ref: middle_main_top
-          shift: [2,15]
+          shift: [0,cx]
         - ref: index_outer_top
-          shift: [12,12]
+          shift: [0,cx]
         - ref: index_inner_home
-          shift: [15,10]
+          shift: [cx,cx]
+        - ref: index_inner_mod
+          shift: [cx,-cx * 0.5]
         - ref: thumb_main_outer
-          shift: [-15,-9]
+          shift: [-cx,0]
         - ref: thumb_main_moreinner
-          shift: [-15,12]
+          shift: [-cx,cx]
         - ref: thumb_main_moreinner
-          shift: [12,15]
+          shift: [cx,cx]
         - ref: thumb_main_moreouter
-          shift: [15,-5]
+          shift: [cx,0]
         - ref: pinky_inner_bottom
-          shift: [3,-19]
+          shift: [0,-cx]
   keys:
     - what: rectangle
       where: true
