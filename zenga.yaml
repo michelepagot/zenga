@@ -1,17 +1,21 @@
+metadata:
+  engine: 4.1.0
+  version: 0.0.1
+  author: michelepagot
 units:
   # Proxy Spacing Variables
-  kx: cx
-  ky: cy
+  kx: U
+  ky: U
   # Padding Variables
   px: kx + 2
   py: ky + 2
-  openhand: -4
+  openhand: -3
 points:
   zones:
     pinky:
       key:
-        padding: 1ky
-        spread: 1kx
+        padding: ky
+        spread: kx
       columns:
         outer:
           rows.bottom.skip: true
@@ -24,12 +28,12 @@ points:
         top:
     ring:
       key:
-        padding: 1ky
-        spread: 1kx
+        padding: ky
+        spread: kx
         splay: openhand -4
       anchor:
         ref: pinky_inner_bottom
-        shift: [23, 3]
+        shift: [kx*1.2, 3]
       columns:
         main:
       rows:
@@ -39,12 +43,12 @@ points:
         top:
     middle:
       key:
-        padding: 1ky
-        spread: 1kx
+        padding: ky
+        spread: kx
         splay: openhand - 3.5
       anchor:
         ref: ring_main_mod
-        shift: [25, 5]
+        shift: [kx*1.3, 5]
       columns:
         main:
       rows:
@@ -54,11 +58,11 @@ points:
         top:
     index:
       key:
-        padding: 1ky
-        spread: 1kx
+        padding: ky
+        spread: kx
       anchor:
         ref: middle_main_mod
-        shift: [25, -8]
+        shift: [kx*1.3, -8]
       columns:
         outer:
           key:
@@ -77,7 +81,7 @@ points:
         rotate: -9
       anchor:
         ref: index_outer_mod
-        shift: [0, -22]
+        shift: [0, -ky*1.2]
       columns:
         main:
       rows:
@@ -92,29 +96,29 @@ outlines:
       fillet: 2
       points:
         - ref: pinky_outer_home
-          shift: [-cx,-cx]
+          shift: [-kx,-ky]
         - ref: pinky_outer_top
-          shift: [-cx,cx]
+          shift: [-kx,ky]
         - ref: ring_main_top
-          shift: [0,cx]
+          shift: [0,ky]
         - ref: middle_main_top
-          shift: [0,cx]
+          shift: [0,ky]
         - ref: index_outer_top
-          shift: [0,cx]
+          shift: [0,ky]
         - ref: index_inner_home
-          shift: [cx,cx]
+          shift: [kx,ky]
         - ref: index_inner_mod
-          shift: [cx,-cx * 0.5]
+          shift: [kx,-ky * 0.5]
         - ref: thumb_main_outer
-          shift: [-cx,0]
+          shift: [-kx,0]
         - ref: thumb_main_moreinner
-          shift: [-cx,cx]
+          shift: [-kx,ky]
         - ref: thumb_main_moreinner
-          shift: [cx,cx]
-        - ref: thumb_main_moreouter
-          shift: [cx,0]
+          shift: [kx,ky]
+        - ref: thumb_main_outer
+          shift: [kx*0.8,0]
         - ref: pinky_inner_bottom
-          shift: [0,-cx]
+          shift: [0,-ky]
   keys:
     - what: rectangle
       where: true
