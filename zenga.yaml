@@ -10,9 +10,13 @@ units:
   px: kx + 2
   py: ky + 2
   openhand: -3
+  controller: 25
 points:
   zones:
     pinky:
+      # Fix placement on KiCAD sheet.
+      anchor:
+        shift: [70, -120]
       key:
         padding: ky
         spread: kx
@@ -93,24 +97,24 @@ outlines:
   board:
     - what: polygon
       operation: stack
-      fillet: 2
+      fillet: 10
       points:
         - ref: pinky_outer_home
-          shift: [-kx,-ky]
+          shift: [-kx * 0.6,-ky * 0.6]
         - ref: pinky_outer_top
-          shift: [-kx,ky]
+          shift: [-kx * 0.6,ky * 0.6]
         - ref: ring_main_top
-          shift: [0,ky]
+          shift: [-kx*0.6,ky*0.6]
         - ref: middle_main_top
-          shift: [0,ky]
+          shift: [-kx*0.6,ky*0.6]
         - ref: index_outer_top
-          shift: [0,ky]
+          shift: [-kx*0.4,ky]
         - ref: index_inner_home
-          shift: [kx,ky]
+          shift: [kx +controller,ky]
         - ref: index_inner_mod
-          shift: [kx,-ky * 0.5]
+          shift: [kx+controller,(-ky * 0.5)]
         - ref: thumb_main_outer
-          shift: [-kx,0]
+          shift: [-kx, controller]
         - ref: thumb_main_moreinner
           shift: [-kx,ky]
         - ref: thumb_main_moreinner
@@ -127,3 +131,44 @@ outlines:
     - name: board
     - operation: subtract
       name: keys
+pcbs:
+  lascheda:
+    outlines:
+      main:
+        outline: board
+    footprints:
+      choc_hotswap:
+        what: mx
+        where: true
+        params:
+          keycaps: true
+          reverse: true
+          hotswap: true
+          from: "{{column_net}}"
+          to: "{{colrow}}"
+      diode:
+        what: diode
+        where: true
+        params:
+          from: "{{colrow}}"
+          to: "{{row_net}}"
+        adjust:
+          shift: [0, -5]
+      micro:
+        what: promicro
+        params:
+          orientation: "down"
+        where:
+          ref: index_inner_home
+          shift: [kx * 1.1,-20]
+          rotate: -90
+      oled:
+        what: oled
+        params:
+          side: "F"
+          SDA: P2
+          SCL: P3
+        where:
+          ref: index_inner_mod
+          shift: [kx*1.1,0]
+          rotate: 90
