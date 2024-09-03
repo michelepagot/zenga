@@ -10,7 +10,7 @@ units:
   px: kx + 2
   py: ky + 2
   openhand: -3
-  controller: 25
+  controller: 20
 points:
   zones:
     pinky:
@@ -23,13 +23,18 @@ points:
       columns:
         outer:
           rows.bottom.skip: true
+          # column_net: GP15
         inner:
+          # column_net: GP16
           key:
             stagger: 8
       rows:
         bottom:
+          row_net: GP27
         home:
+          row_net: GP28
         top:
+          row_net: GP29
     ring:
       key:
         padding: ky
@@ -40,11 +45,16 @@ points:
         shift: [kx*1.2, 3]
       columns:
         main:
+          #column_net: GP5
       rows:
         mod:
+          row_net: GP26
         bottom:
+          row_net: GP27
         home:
+          row_net: GP28
         top:
+          row_net: GP29
     middle:
       key:
         padding: ky
@@ -55,11 +65,16 @@ points:
         shift: [kx*1.3, 5]
       columns:
         main:
+          #column_net: GP4
       rows:
         mod:
+          row_net: GP26
         bottom:
+          row_net: GP27
         home:
+          row_net: GP28
         top:
+          row_net: GP29
     index:
       key:
         padding: ky
@@ -69,15 +84,21 @@ points:
         shift: [kx*1.3, -8]
       columns:
         outer:
+          #column_net: GP3
           key:
             splay: openhand
         inner:
           rows.top.skip: true
+          #column_net: GP2
       rows:
         mod:
+          row_net: GP26
         bottom:
+          row_net: GP27
         home:
+          row_net: GP28
         top:
+          row_net: GP29
     thumb:
       key:
         padding: 1ky+3
@@ -88,11 +109,16 @@ points:
         shift: [0, -ky*1.2]
       columns:
         main:
+          #row_net: GP6
       rows:
         moreouter:
+          column_net: GP5
         outer:
+          column_net: GP4
         inner:
+          column_net: GP3
         moreinner:
+          column_net: GP2
 outlines:
   board:
     - what: polygon
@@ -100,29 +126,39 @@ outlines:
       fillet: 10
       points:
         - ref: pinky_outer_home
-          shift: [-kx * 0.6,-ky * 0.6]
+          shift: [-kx * 0.6,-ky * 0.7]
         - ref: pinky_outer_top
-          shift: [-kx * 0.6,ky * 0.6]
+          shift: [-kx * 0.6,ky * 0.7]
+        - ref: pinky_inner_top
+          shift: [0,ky * 0.7]
         - ref: ring_main_top
           shift: [-kx*0.6,ky*0.6]
+        - ref: ring_main_top
+          shift: [0,ky*0.6]
         - ref: middle_main_top
           shift: [-kx*0.6,ky*0.6]
         - ref: index_outer_top
-          shift: [-kx*0.4,ky]
+          shift: [kx * 0.3,ky]
         - ref: index_inner_home
-          shift: [kx +controller,ky]
+          shift: [0,ky]
+        - ref: index_inner_home
+          shift: [kx +controller,0]
         - ref: index_inner_mod
           shift: [kx+controller,(-ky * 0.5)]
         - ref: thumb_main_outer
           shift: [-kx, controller]
         - ref: thumb_main_moreinner
-          shift: [-kx,ky]
+          shift: [-kx*0.8,ky*0.8]
         - ref: thumb_main_moreinner
-          shift: [kx,ky]
+          shift: [kx*0.8,ky*0.8]
         - ref: thumb_main_outer
-          shift: [kx*0.8,0]
+          shift: [kx*0.7,0]
+        - ref: thumb_main_moreouter
+          shift: [kx*0.6,0]
         - ref: pinky_inner_bottom
-          shift: [0,-ky]
+          shift: [kx*0.5,-ky * 0.6]
+        - ref: pinky_inner_bottom
+          shift: [-kx,-ky * 0.6]
   keys:
     - what: rectangle
       where: true
@@ -137,7 +173,7 @@ pcbs:
       main:
         outline: board
     footprints:
-      choc_hotswap:
+      mx_hotswap:
         what: mx
         where: true
         params:
@@ -157,18 +193,19 @@ pcbs:
       micro:
         what: rp2040zero
         params:
-          orientation: "down"
+          reverse: false
         where:
-          ref: index_inner_home
-          shift: [kx * 1.1,-20]
-          rotate: -90
+          ref: index_inner_bottom
+          shift: [kx * 0.6,-ky*0.5]
+          rotate: 0
       oled:
         what: oled
         params:
           side: "F"
-          SDA: P2
-          SCL: P3
+          SDA: GP0
+          SCL: GP1
+          VCC: P3V3
         where:
           ref: index_inner_mod
-          shift: [kx*1.1,0]
+          shift: [(kx*0.5) + (controller * 0.5) -10,-ky*0.5]
           rotate: 90
