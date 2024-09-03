@@ -155,7 +155,7 @@ pcbs:
         adjust:
           shift: [0, -5]
       micro:
-        what: promicro
+        what: rp2040zero
         params:
           orientation: "down"
         where:
