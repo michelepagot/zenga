@@ -22,19 +22,32 @@ points:
         spread: kx
       columns:
         outer:
-          rows.bottom.skip: true
-          # column_net: GP15
+          rows:
+            top:
+              col_net: GP9
+              row_net: GP29
+            home:
+              col_net: GP9
+              row_net: GP28
+            bottom:
+              skip: true
         inner:
-          # column_net: GP16
           key:
             stagger: 8
+          rows:
+            top:
+              col_net: GP10
+              row_net: GP29
+            home:
+              col_net: GP10
+              row_net: GP28
+            bottom:
+              col_net: GP9
+              row_net: GP27
       rows:
         bottom:
-          row_net: GP27
         home:
-          row_net: GP28
         top:
-          row_net: GP29
     ring:
       key:
         padding: ky
@@ -45,16 +58,24 @@ points:
         shift: [kx*1.2, 3]
       columns:
         main:
-          #column_net: GP5
+          rows:
+            top:
+              col_net: GP11
+              row_net: GP29
+            home:
+              col_net: GP11
+              row_net: GP28
+            bottom:
+              col_net: GP10
+              row_net: GP27
+            mod:
+              col_net: GP9
+              row_net: GP26
       rows:
         mod:
-          row_net: GP26
         bottom:
-          row_net: GP27
         home:
-          row_net: GP28
         top:
-          row_net: GP29
     middle:
       key:
         padding: ky
@@ -65,16 +86,24 @@ points:
         shift: [kx*1.3, 5]
       columns:
         main:
-          #column_net: GP4
+          rows:
+            top:
+              col_net: GP12
+              row_net: GP29
+            home:
+              col_net: GP12
+              row_net: GP28
+            bottom:
+              col_net: GP11
+              row_net: GP27
+            mod:
+              col_net: GP11
+              row_net: GP26
       rows:
         mod:
-          row_net: GP26
         bottom:
-          row_net: GP27
         home:
-          row_net: GP28
         top:
-          row_net: GP29
     index:
       key:
         padding: ky
@@ -84,21 +113,39 @@ points:
         shift: [kx*1.3, -8]
       columns:
         outer:
-          #column_net: GP3
           key:
             splay: openhand
+          rows:
+            top:
+              col_net: GP14
+              row_net: GP29
+            home:
+              col_net: GP14
+              row_net: GP28
+            bottom:
+              col_net: GP14
+              row_net: GP27
+            mod:
+              col_net: GP12
+              row_net: GP26
         inner:
-          rows.top.skip: true
-          #column_net: GP2
+          rows:
+            top:
+              skip: true
+            home:
+              col_net: GP13
+              row_net: GP28
+            bottom:
+              col_net: GP13
+              row_net: GP27
+            mod:
+              col_net: GP14
+              row_net: GP26
       rows:
         mod:
-          row_net: GP26
         bottom:
-          row_net: GP27
         home:
-          row_net: GP28
         top:
-          row_net: GP29
     thumb:
       key:
         padding: 1ky+3
@@ -109,16 +156,19 @@ points:
         shift: [0, -ky*1.2]
       columns:
         main:
-          #row_net: GP6
       rows:
-        moreouter:
-          column_net: GP5
-        outer:
-          column_net: GP4
-        inner:
-          column_net: GP3
         moreinner:
-          column_net: GP2
+          col_net: GP10
+          row_net: GP15
+        inner:
+          col_net: GP11
+          row_net: GP15
+        outer:
+          col_net: GP12
+          row_net: GP15
+        moreouter:
+          col_net: GP13
+          row_net: GP15
 outlines:
   board:
     - what: polygon
@@ -147,13 +197,13 @@ outlines:
           shift: [kx+controller,(-ky * 0.5)]
         - ref: thumb_main_outer
           shift: [-kx, controller]
-        - ref: thumb_main_moreinner
+        - ref: thumb_main_moreouter
           shift: [-kx*0.8,ky*0.8]
-        - ref: thumb_main_moreinner
+        - ref: thumb_main_moreouter
           shift: [kx*0.8,ky*0.8]
         - ref: thumb_main_outer
           shift: [kx*0.7,0]
-        - ref: thumb_main_moreouter
+        - ref: thumb_main_moreinner
           shift: [kx*0.6,0]
         - ref: pinky_inner_bottom
           shift: [kx*0.5,-ky * 0.6]
@@ -180,7 +230,7 @@ pcbs:
           keycaps: true
           reverse: true
           hotswap: true
-          from: "{{column_net}}"
+          from: "{{col_net}}"
           to: "{{colrow}}"
       diode:
         what: diode
