@@ -21,7 +21,7 @@ points:
         padding: ky
         spread: kx
       columns:
-        outer:
+        pinkyouter:
           rows:
             top:
               col_net: GP9
@@ -31,7 +31,7 @@ points:
               row_net: GP28
             bottom:
               skip: true
-        inner:
+        pinkyinner:
           key:
             stagger: 8
           rows:
@@ -54,7 +54,7 @@ points:
         spread: kx
         splay: openhand -4
       anchor:
-        ref: pinky_inner_bottom
+        ref: pinky_pinkyinner_bottom
         shift: [kx*1.2, 3]
       columns:
         main:
@@ -112,7 +112,7 @@ points:
         ref: middle_main_mod
         shift: [kx*1.3, -8]
       columns:
-        outer:
+        indexouter:
           key:
             splay: openhand
           rows:
@@ -128,7 +128,7 @@ points:
             mod:
               col_net: GP12
               row_net: GP26
-        inner:
+        indexinner:
           rows:
             top:
               skip: true
@@ -152,21 +152,21 @@ points:
         splay: openhand -90
         rotate: -9
       anchor:
-        ref: index_outer_mod
+        ref: index_indexouter_mod
         shift: [0, -ky*1.2]
       columns:
         main:
       rows:
-        moreinner:
+        thumbmoreinner:
           col_net: GP10
           row_net: GP15
-        inner:
+        thumbinner:
           col_net: GP11
           row_net: GP15
-        outer:
+        thumbouter:
           col_net: GP12
           row_net: GP15
-        moreouter:
+        thumbmoreouter:
           col_net: GP13
           row_net: GP15
 outlines:
@@ -175,11 +175,11 @@ outlines:
       operation: stack
       fillet: 10
       points:
-        - ref: pinky_outer_home
+        - ref: pinky_pinkyouter_home
           shift: [-kx * 0.6,-ky * 0.7]
-        - ref: pinky_outer_top
+        - ref: pinky_pinkyouter_top
           shift: [-kx * 0.6,ky * 0.7]
-        - ref: pinky_inner_top
+        - ref: pinky_pinkyinner_top
           shift: [0,ky * 0.7]
         - ref: ring_main_top
           shift: [-kx*0.6,ky*0.6]
@@ -187,27 +187,27 @@ outlines:
           shift: [0,ky*0.6]
         - ref: middle_main_top
           shift: [-kx*0.6,ky*0.6]
-        - ref: index_outer_top
+        - ref: index_indexouter_top
           shift: [kx * 0.3,ky]
-        - ref: index_inner_home
+        - ref: index_indexinner_home
           shift: [0,ky]
-        - ref: index_inner_home
+        - ref: index_indexinner_home
           shift: [kx +controller,0]
-        - ref: index_inner_mod
+        - ref: index_indexinner_mod
           shift: [kx+controller,(-ky * 0.5)]
-        - ref: thumb_main_outer
+        - ref: thumb_main_thumbouter
           shift: [-kx, controller]
-        - ref: thumb_main_moreouter
+        - ref: thumb_main_thumbmoreouter
           shift: [-kx*0.8,ky*0.8]
-        - ref: thumb_main_moreouter
+        - ref: thumb_main_thumbmoreouter
           shift: [kx*0.8,ky*0.8]
-        - ref: thumb_main_outer
+        - ref: thumb_main_thumbouter
           shift: [kx*0.7,0]
-        - ref: thumb_main_moreinner
+        - ref: thumb_main_thumbmoreinner
           shift: [kx*0.6,0]
-        - ref: pinky_inner_bottom
+        - ref: pinky_pinkyinner_bottom
           shift: [kx*0.5,-ky * 0.6]
-        - ref: pinky_inner_bottom
+        - ref: pinky_pinkyinner_bottom
           shift: [-kx,-ky * 0.6]
   keys:
     - what: rectangle
@@ -241,11 +241,11 @@ pcbs:
         adjust:
           shift: [0, -5]
       micro:
-        what: rp2040zero
+        what: chouchou/rp2040zero
         params:
           reverse: false
         where:
-          ref: index_inner_bottom
+          ref: index_indexinner_bottom
           shift: [kx * 0.6,-ky*0.5]
           rotate: 0
       oled:
@@ -256,6 +256,6 @@ pcbs:
           SCL: GP1
           VCC: P3V3
         where:
-          ref: index_inner_mod
+          ref: index_indexinner_mod
           shift: [(kx*0.5) + (controller * 0.5) -10,-ky*0.5]
           rotate: 90
